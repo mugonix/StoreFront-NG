@@ -1,0 +1,38 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <mat-card class="auth-card">
+            <mat-card-title>
+                <h1 class="mat-display-2 text-center">Sign In</h1>
+            </mat-card-title>
+            <mat-card-content fxLayout="column">
+
+                <mat-form-field class="core-text" fxFlex="98" appearance="outline">
+                    <mat-label>E-mail</mat-label>
+                    <input matInput formControlName="email" name="email">
+                    <mat-icon matSuffix>account_box</mat-icon>
+                </mat-form-field>
+                <mat-form-field class="core-text" fxFlex="98" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" formControlName="password" name="password" type="password">
+                    <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
+
+                <div class="mt-100">
+                    <span fxFlex></span>
+                    <ng-container *ngIf="!loading; else loadingSpinner">
+                        <button mat-raised-button [disabled]="!(canSubmit && loginForm.valid)" type="submit" color="primary">
+                                Sign In
+                            </button>
+                    </ng-container>
+
+                    <ng-template #loadingSpinner>
+                        <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+                    </ng-template>
+                    <span fxFlex></span>
+                </div>
+
+
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>

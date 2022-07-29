@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Are you sure?</h1>
+<div mat-dialog-content>Are you sure you would like to delete the product? This action cannot be reversed.</div>
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button color="accent" (click)="deleteProduct()">
+        <ng-container *ngIf="!isLoading; else loadingSpinner">
+            Delete
+        </ng-container>
+    </button>
+    <ng-template #loadingSpinner>
+        <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+    </ng-template>
+</div>

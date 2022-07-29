@@ -1,0 +1,12 @@
+<mat-card>
+
+    <img mat-card-image height="380" [src]="product?.image_path" [routerLink]="'/product/'+product?.id" [state]="product!" [alt]="'Photo of '+product?.name">
+    <mat-card-content>
+        <p>
+            <a [routerLink]="'/product/'+product?.id" [state]="product!" class="product-title mat-title">{{product?.name}}</a><br/> US{{product?.price | currency}}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button [routerLink]="'/product/'+product?.id" [state]="product!" mat-button>VIEW</button>
+    </mat-card-actions>
+</mat-card>

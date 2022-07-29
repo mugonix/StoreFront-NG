@@ -1,0 +1,24 @@
+<div class="container">
+    <p class="mat-display-3 text-center" style="margin-bottom: 20px;">Welcome to the home of products!</p>
+    <p class="mat-display-1 text-center">Our Products</p>
+
+
+    <div fxFlexFill>
+        <div fxFlexFill fxLayout="row wrap" fxLayoutGap="50px 30px grid" style="cursor: pointer;">
+            <div fxFlex="33" fxFlex.lt-md="50" fxFlex.lt-sm="100" *ngFor="let product of productList">
+                <app-product-card [product]="product"></app-product-card>
+            </div>
+
+        </div>
+        <div *ngIf="isLoading" fxLayout="column" fxLayoutAlign="center center" style="margin-top: 20px;">
+            <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+            <div>Loading</div>
+        </div>
+
+        <div *ngIf="!isLoading && page < totalPage" fxLayout="column" fxLayoutAlign="center center" style="margin-top: 20px;">
+            <button mat-raised-button class="wide-button" (click)="handlePageChange()">Load more products</button>
+        </div>
+    </div>
+
+
+</div>

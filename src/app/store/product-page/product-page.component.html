@@ -1,0 +1,28 @@
+<div class="container-pc" fxFill fxLayoutGap="20px" fxLayout="row">
+    <div fxFlex>
+        <img [src]="product?.image_path" width="100%" [alt]="'photo of '+product?.name" />
+    </div>
+
+    <mat-card fxFlex>
+
+        <mat-card-content>
+            <p class="mat-display-1" style="margin-bottom: 20px;">Product Details</p>
+            <p class="mat-text-body" style="margin-bottom: 20px;">Product Name: <b>{{ product?.name }}</b></p>
+            <p class="mat-text-body" style="margin-bottom: 20px;">Product Price: <b>US{{product?.price | currency}}</b></p>
+            <div style="text-align: center;">
+                <button mat-raised-button routerLink="/" style="margin-right: 20px;">
+                    <mat-icon>chevron_left</mat-icon>
+                    Back
+                </button>
+                <button mat-raised-button routerLink="/make-payments" [state]="product!" color="accent">
+                    <mat-icon>shopping_cart</mat-icon>
+                    Buy Now
+                </button>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+
+
+
+</div>

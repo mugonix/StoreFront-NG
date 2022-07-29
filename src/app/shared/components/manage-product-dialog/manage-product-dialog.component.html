@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{data.product == null ? "Add New":"Update Existing"}} Product</h1>
+<form [formGroup]="manageProductForm" (ngSubmit)="saveProduct(manageProductForm.value)">
+    <div mat-dialog-content>
+        <mat-form-field class="core-text" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" name="name">
+            <mat-icon matPrefix>inventory_2</mat-icon>
+        </mat-form-field>
+        <mat-form-field class="core-text" appearance="outline">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" formControlName="price" name="price" class="right-align" placeholder="0">
+            <mat-icon matPrefix>attach_money</mat-icon>
+        </mat-form-field>
+        <label>
+            Upload Image
+            <input type="file" (change)="uploadFile($event)" accept="image/png, image/jpeg" name="image">
+        </label>
+        <div class="upload-error" *ngIf="manageProductForm.controls['image'].touched && manageProductForm.controls['image'].errors != null && manageProductForm.controls['image'].errors['required']">
+            Image file is required
+        </div>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-button color="primary" cdkFocusInitial>
+            <ng-container *ngIf="!isLoading; else loadingSpinner">
+                Save
+            </ng-container>
+        </button>
+
+        <ng-template #loadingSpinner>
+            <mat-progress-spinner diameter="20" mode="indeterminate"></mat-progress-spinner>
+        </ng-template>
+    </div>
+</form>

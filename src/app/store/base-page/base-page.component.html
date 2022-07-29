@@ -1,0 +1,52 @@
+<div fxFill fxLayout="column">
+    <mat-toolbar fxFlex="10" color="primary">
+        <a routerLink="/" style="margin-top: 5px;">
+            <img src="assets/logo.png" alt="store logo" height="50" />
+        </a>
+        <span class="toolbar-spacer"></span>
+
+        <ng-container *ngIf="user == null">
+            <button mat-button routerLink="login" aria-label="Login to Pick n Pay Store">
+                <mat-icon>lock</mat-icon> Login
+            </button>
+        </ng-container>
+
+        <ng-container *ngIf="user != null">
+            <button mat-button routerLink="manage-products">Manage Products</button>
+            <button mat-button routerLink="manage-orders">Manage Orders</button>
+            <button mat-button [matMenuTriggerFor]="profileMenu">
+               
+                <mat-icon >account_circle</mat-icon>
+                {{user?.name}}
+                <mat-menu #profileMenu="matMenu" >
+                  <mat-card class="mat-elevation-z0">
+                    <mat-card-header>
+                      <mat-card-title class="core-heading">
+                        
+                  </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content class="app-logout">
+                      <p class="core-text">Email: {{user?.email ?? '-'}}</p>
+                  </mat-card-content>
+                  <mat-card-footer class="footer-top-popup">
+                      <button mat-button color="primary" (click)="profileMenu.close">Close</button>
+            <span fxFlex></span>
+            <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+            </mat-card-footer>
+            </mat-card>
+            </mat-menu>
+            </button>
+        </ng-container>
+
+
+    </mat-toolbar>
+
+    <div fxFlex>
+        <router-outlet></router-outlet>
+    </div>
+
+    <div class="footer" fxFlex="10">
+
+    </div>
+
+</div>
